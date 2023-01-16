@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@cosmjs/stargate": "0.28.11",
     "@osmonauts/telescope": "^0.85.1",
     "protobufjs": "7.0.0"
   }
