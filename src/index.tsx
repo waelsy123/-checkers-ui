@@ -6,6 +6,8 @@ import { BrowserRouter } from "react-router-dom";
 import App from "./components/App";
 import registerServiceWorker from "./registerServiceWorker";
 
+import _ from "../environment";
+
 Lockr.prefix = "react_checkers";
 // make sure the browser supports local storage
 // @ts-ignore
@@ -13,13 +15,15 @@ declare let localStorageSupport: boolean;
 
 // window.localStorageSupport = typeof(Storage) !== "undefined";
 
-const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
+const root = ReactDOM.createRoot(
+  document.getElementById("root") as HTMLElement
+);
 root.render(
-    <React.StrictMode>
-        <BrowserRouter>
-            <App />
-        </BrowserRouter>
-    </React.StrictMode>,
+  <React.StrictMode>
+    <BrowserRouter>
+      <App rpcUrl={process.env.RPC_URL!} />
+    </BrowserRouter>
+  </React.StrictMode>
 );
 registerServiceWorker();
 // https://www.typescriptlang.org/docs/handbook/advanced-types.html
