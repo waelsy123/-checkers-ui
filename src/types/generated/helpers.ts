@@ -147,11 +147,11 @@ export const setPaginationParams = (options: Params, pagination?: PageRequest) =
         options.params['pagination.key'] = Buffer.from(pagination.key).toString('base64');
     }
     if (typeof pagination?.limit !== "undefined") {
-      options.params["pagination.limit"] = pagination.limit.toString()
+        options.params["pagination.limit"] = pagination.limit.toString()
     }
     if (typeof pagination?.offset !== "undefined") {
-      options.params["pagination.offset"] = pagination.offset.toString()
-    }    
+        options.params["pagination.offset"] = pagination.offset.toString()
+    }
     if (typeof pagination?.reverse !== "undefined") {
         options.params['pagination.reverse'] = pagination.reverse;
     }
@@ -214,7 +214,7 @@ export function fromTimestamp(t: Timestamp): Date {
     return new Date(millis);
 };
 
-const fromJSON = (object: any): Timestamp => {
+export const fromJSON = (object: any): Timestamp => {
     return {
         seconds: isSet(object.seconds) ? Long.fromString(object.seconds) : Long.ZERO,
         nanos: isSet(object.nanos) ? Number(object.nanos) : 0
@@ -222,22 +222,22 @@ const fromJSON = (object: any): Timestamp => {
 };
 
 const timestampFromJSON = (object: any): Timestamp => {
-  return {
-    seconds: isSet(object.seconds) ? Long.fromValue(object.seconds) : Long.ZERO,
-    nanos: isSet(object.nanos) ? Number(object.nanos) : 0,
-  };
+    return {
+        seconds: isSet(object.seconds) ? Long.fromValue(object.seconds) : Long.ZERO,
+        nanos: isSet(object.nanos) ? Number(object.nanos) : 0,
+    };
 }
-  
+
 export function fromJsonTimestamp(o: any): Timestamp {
-  if (o instanceof Date) {
-    return toTimestamp(o);
-  } else if (typeof o === "string") {
-    return toTimestamp(new Date(o));
-  } else {
-    return timestampFromJSON(o);
-  }
+    if (o instanceof Date) {
+        return toTimestamp(o);
+    } else if (typeof o === "string") {
+        return toTimestamp(new Date(o));
+    } else {
+        return timestampFromJSON(o);
+    }
 }
-  
+
 function numberToLong(number: number) {
     return Long.fromNumber(number);
 }
